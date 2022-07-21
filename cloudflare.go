@@ -546,3 +546,12 @@ func extractZoneIDs(zones []cloudflare.Zone) []string {
 
 	return IDs
 }
+
+func filterNonFreePlan(zones []cloudflare.Zone) (filteredZones []cloudflare.Zone) {
+	for _, z := range zones {
+		if z.Plan.ZonePlanCommon.ID != "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee" {
+			filteredZones = append(filteredZones, z)
+		}
+	}
+	return
+}
